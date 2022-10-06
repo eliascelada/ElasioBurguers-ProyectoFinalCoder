@@ -1,11 +1,31 @@
 const Clickbutton = document.querySelectorAll('.button')
 const tbody = document.querySelector('.tbody')
+const btnc = document.querySelector('#buyBtnc')
+
 let carrito = []
 
 Clickbutton.forEach(btn => {
     btn.addEventListener('click', addToCarritoItem)
 })
 
+btnc.addEventListener('click', () => {
+    swal({
+        title: "¿No vas a agregar nada más al carrito?",
+        text: "Una vez que continúes no podrás regresar. Cualquier cambio tendrás que comenzar tu compra de nuevo.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+        swal("¡Perfecto! Serás redirigido para proceder al pago.", {
+            icon: "success",
+        });
+        } else {
+        swal("¡Genial! Sigamos buscando la mejor hamburguesa para hoy.");
+        }
+    })
+})
 
 function addToCarritoItem(e){
     const button = e.target
